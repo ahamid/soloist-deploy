@@ -18,7 +18,13 @@ Example:
     cap bootstrap HOSTS=myserver # once
     cap deploy HOSTS=myserver    # any time you change Chef config/recipes (or set up a cron job instead)
 
-As a convenience the Opscode skeleton Chef repository is checked out under this project so you can fork this project and get started quickly.  Alternatively you can simply change the `local_chef_dir` setting in the `Capfile` to use an independent Chef repository.
+As a convenience the Opscode skeleton Chef repository is checked out under this project so you can fork this project and get started quickly.  One recipe is include, which enables a cron job for running soloist.  To enable this recipe simply uncomment the line from `chef/soloistrc`:
+
+    recipes:
+    # uncomment to enable soloist cron job
+    #- soloist-cron
+
+Alternatively you can simply change the `local_chef_dir` setting in the `Capfile` to use an independent Chef repository.
 
 See [soloist](https://github.com/mkocher/soloist) for Soloist documentation.
 

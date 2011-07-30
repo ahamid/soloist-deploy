@@ -1,4 +1,6 @@
 cookbook_paths:
 - ./cookbooks/
 recipes:
+# uncomment to enable soloist cron job
+#- soloist-cron
 
