@@ -11,6 +11,7 @@ require "rvm/capistrano"
 HOST=ENV['HOSTS'].split(':')[0]
 PORT=ENV['HOSTS'].split(':', -2)[1] || 22
 
+set :bootstrap_os, 'centos'               # determines what bootstrap script we run
 set :rvm_ruby_string, '1.9.2'             # set to the RVM Ruby version to use on server
 set :rvm_type, :system                    # install/use system RVM install
 set :user, "root"                         # do everything as root
@@ -28,7 +29,7 @@ end
 desc "Bootstrap server"
 task :bootstrap do |server|
   set :default_shell, "/bin/bash"
-  upload "bootstrap.sh", "/root/bootstrap.sh"
+  upload "bootstrap-#{bootstrap_os}.sh", "/root/bootstrap.sh"
   run "chmod a+x /root/bootstrap.sh"
   run "RUBY_VERSION=#{rvm_ruby_string} /root/bootstrap.sh"
   install_base_gems
