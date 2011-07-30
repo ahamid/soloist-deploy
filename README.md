@@ -5,6 +5,7 @@ This project does the simplest-possible-thing to set up a single server for use 
 
 `Capfile` defines tasks to bootstrap the server, sync the Chef root dir, and run soloist.  
 `bootstrap.sh` is the script run on the server upon bootstrap.
+`chef/soloistrc` is the soloist config; edit it here or create one for your external repo
 
 Usage:
 
