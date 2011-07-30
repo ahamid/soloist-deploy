@@ -14,6 +14,6 @@ Invoke like:
 
 As a convenience the Opscode skeleton Chef repository is checked out under this project so you can fork this project and get started quickly.  Alternatively you can simply change the `local_chef_dir` setting in the `Capfile` to use an independent Chef repository.
 
-See ["soloist"](https://github.com/mkocher/soloist) for Soloist documentation.
+See [soloist](https://github.com/mkocher/soloist) for Soloist documentation.
 
-This project was adapted from ["chef_deploy"](https://github.com/mkocher/chef_deploy).
+This project was adapted from [chef_deploy](https://github.com/mkocher/chef_deploy).
