@@ -1,7 +1,7 @@
 Overview
 ========
 
-This is a simple project that helps setting up a single server for use with Chef/Soloist so that it can be managed in a traditional system administration fashion.  This approach entails running everything as root, and using a single system RVM installation.
+This project does the simplest-possible-thing to set up a single server for use with Chef/Soloist so that it can be managed in a traditional system administration fashion.  This approach entails running everything as root, and using a single system RVM installation.
 
 `Capfile` defines tasks to bootstrap the server, sync the Chef root dir, and run soloist.  
 `bootstrap.sh` is the script run on the server upon bootstrap.
