@@ -28,4 +28,4 @@ Alternatively you can simply change the `local_chef_dir` setting in the `Capfile
 
 See [soloist](https://github.com/mkocher/soloist) for Soloist documentation.
 
-This project was adapted from [chef_deploy](https://github.com/mkocher/chef_deploy).
+Approach, `Capfile` and 'bootstrap-centos.sh` in this project was adapted from [chef_deploy](https://github.com/mkocher/chef_deploy).
