@@ -6,11 +6,16 @@ This project does the simplest-possible-thing to set up a single server for use 
 `Capfile` defines tasks to bootstrap the server, sync the Chef root dir, and run soloist.  
 `bootstrap.sh` is the script run on the server upon bootstrap.
 
-Invoke like:
+Usage:
 
     cap [bootstrap|deploy|sync|soloist] HOSTS=<hostname>[:<port>]
 
 (`HOSTS` should only contain a single hostname)
+
+Example:
+
+    cap bootstrap HOSTS=myserver # once
+    cap deploy HOSTS=myserver    # any time you change Chef config/recipes (or set up a cron job instead)
 
 As a convenience the Opscode skeleton Chef repository is checked out under this project so you can fork this project and get started quickly.  Alternatively you can simply change the `local_chef_dir` setting in the `Capfile` to use an independent Chef repository.
 
