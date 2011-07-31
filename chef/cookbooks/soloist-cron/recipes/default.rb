@@ -4,7 +4,7 @@
 #
 
 REMOTE_COOKBOOK_DIR='/var/chef-solo'
-SOLO_CMD="rvm 1.9.2 exec soloist"
+SOLO_CMD="rvm 1.9.2 exec soloist 2>&1 | logger -t soloist -p notice"
 
 file "/etc/cron.d/chef-solo" do
   content "5 * * * * root cd #{REMOTE_COOKBOOK_DIR}; #{SOLO_CMD}"
