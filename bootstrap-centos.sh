@@ -19,7 +19,7 @@ yum install -y rsync
 
 cd ~
 
-bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
+bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
 
 echo "gem: --no-ri --no-rdoc" >> /etc/gemrc
 
