@@ -20,6 +20,13 @@ set :local_chef_dir, "./chef"             # where your top level chef dir is rel
 set :remote_chef_dir, "/var/chef-solo"    # where to upload chef cookbooks on the server
 default_run_options[:pty] = true          # cargo culting this param...
 
+def with_shell(shell)
+  prev_shell = default_shell
+  set :default_shell, shell
+  yield
+  set :default_shell, prev_shell
+end
+
 desc "Syncs cookbooks and runs soloist"
 task :deploy do
   sync
@@ -28,10 +35,11 @@ end
 
 desc "Bootstrap server"
 task :bootstrap do |server|
-  set :default_shell, "/bin/bash"
-  upload "bootstrap-#{bootstrap_os}.sh", "/root/bootstrap.sh"
-  run "chmod a+x /root/bootstrap.sh"
-  run "RUBY_VERSION=#{rvm_ruby_string} /root/bootstrap.sh"
+  with_shell "/bin/bash" do
+    upload "bootstrap-#{bootstrap_os}.sh", "/root/bootstrap.sh"
+    run "chmod a+x /root/bootstrap.sh"
+    run "RUBY_VERSION=#{rvm_ruby_string} /root/bootstrap.sh"
+  end
   install_base_gems
 end
 

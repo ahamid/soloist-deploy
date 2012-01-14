@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # Installs chef and soloist pre-reqs on a CentOS-5.x server
 # Installs RVM and Ruby version specified in $RUBY_VERSION environment variable
 
@@ -19,7 +19,13 @@ yum install -y rsync
 
 cd ~
 
-bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
+# grab updated curl cacert
+# this is hosted on http, so yeah, if this is hacked game over
+# take your chances
+curl http://curl.haxx.se/ca/cacert.pem -o ~/curl-cacert.pem
+export CURL_CA_BUNDLE=~/curl-cacert.pem
+bash -s stable < <(curl -# -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
+export CURL_CA_BUNDLE=
 
 echo "gem: --no-ri --no-rdoc" >> /etc/gemrc
 
@@ -31,4 +37,6 @@ RVMRC_CONTENTS
 
 . ~/.bashrc
 
-rvm install ${RUBY_VERSION:-1.9.2}
+INSTALL_RUBY=${RUBY_VERSION:-1.9.2}
+echo "installing ruby ${INSTALL_RUBY}"
+rvm install "${INSTALL_RUBY}"
