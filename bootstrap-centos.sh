@@ -6,7 +6,7 @@
 rpm -q epel-release-5-4.noarch || rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
 
 # install git
-yum -y install git
+yum install -y git
 
 # rvm prereqs
 yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libffi-devel openssl-devel
