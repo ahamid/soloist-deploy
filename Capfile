@@ -7,10 +7,6 @@
 # RVM Capistrano integration to run commands under RVM ruby context
 require "rvm/capistrano"
 
-# do some trivial parsing so we can use rsync instead of scp
-HOST=ENV['HOSTS'].split(':')[0]
-PORT=ENV['HOSTS'].split(':', -2)[1] || 22
-
 set :bootstrap_os, 'centos'               # determines what bootstrap script we run
 set :rvm_ruby_string, '1.9.2'             # set to the RVM Ruby version to use on server
 set :rvm_type, :system                    # install/use system RVM install
@@ -19,6 +15,12 @@ set :use_sudo, false                      # ...so we don't need sudo
 set :local_chef_dir, "./chef"             # where your top level chef dir is relative to the Capfile
 set :remote_chef_dir, "/var/chef-solo"    # where to upload chef cookbooks on the server
 default_run_options[:pty] = true          # cargo culting this param...
+
+on :start do
+  # do some trivial parsing so we can use rsync instead of scp
+  HOST=ENV['HOSTS'].split(':')[0]
+  PORT=ENV['HOSTS'].split(':', -2)[1] || 22
+end
 
 def with_shell(shell)
   prev_shell = default_shell
